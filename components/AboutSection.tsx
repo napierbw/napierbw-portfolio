@@ -40,7 +40,7 @@ const AboutSection = () => {
             </p>
             <br />
             <p>
-              I graduated from Virginia Commonwealth University in 2021
+              I graduated from Virginia Commonwealth University in 2020
               with a BS in Computer Science and have been working in the
               field ever since.
             </p>
