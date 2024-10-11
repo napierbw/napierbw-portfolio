@@ -1,14 +1,14 @@
-"use client" // this is a client component
-import React from "react"
-import { useState } from "react"
-import { Link } from "react-scroll/modules"
-import { useTheme } from "next-themes"
-import { RiMoonFill, RiSunLine } from "react-icons/ri"
-import { IoMdMenu, IoMdClose } from "react-icons/io"
+"use client"; // this is a client component
+import React from "react";
+import { useState } from "react";
+import { Link } from "react-scroll/modules";
+import { useTheme } from "next-themes";
+import { RiSunLine } from "react-icons/ri";
+import { IoMdMenu, IoMdClose } from "react-icons/io";
 
 interface NavItem {
-  label: string
-  page: string
+  label: string;
+  page: string;
 }
 
 const NAV_ITEMS: Array<NavItem> = [
@@ -24,19 +24,18 @@ const NAV_ITEMS: Array<NavItem> = [
     label: "Projects",
     page: "projects",
   },
-]
+];
 
 export default function Navbar() {
-  const { systemTheme, theme, setTheme } = useTheme()
-  const currentTheme = theme
-  const [navbar, setNavbar] = useState(false)
+  const { resolvedTheme, setTheme } = useTheme();
+  const [navbar, setNavbar] = useState(false);
 
   return (
     <header className="w-full mx-auto  px-4 sm:px-20 fixed top-0 z-50 shadow bg-white dark:bg-stone-900 dark:border-b dark:border-stone-600">
       <div className="justify-between md:items-center md:flex">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <Link to="home">
+            <Link to="home" href="/">
               <div className="container flex items-center space-x-2">
                 <h2 className="text-2xl font-bold">Benjamin Napier</h2>
               </div>
@@ -45,6 +44,7 @@ export default function Navbar() {
               <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
                 onClick={() => setNavbar(!navbar)}
+                aria-label="Toggle Navbar"
               >
                 {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={30} />}
               </button>
@@ -73,30 +73,27 @@ export default function Navbar() {
                     offset={-100}
                     duration={500}
                     onClick={() => setNavbar(!navbar)}
+                    href="/"
                   >
                     {item.label}
                   </Link>
-                )
+                );
               })}
-              {currentTheme === "dark" ? (
-                <button
-                  onClick={() => setTheme("light")}
-                  className="bg-slate-100 p-2 rounded-xl"
-                >
-                  <RiSunLine size={25} color="black" />
-                </button>
-              ) : (
-                <button
-                  onClick={() => setTheme("dark")}
-                  className="bg-slate-100 p-2 rounded-xl"
-                >
-                  <RiMoonFill size={25} color="black"/>
-                </button>
-              )}
+              <button
+                onClick={() =>
+                  resolvedTheme === "dark"
+                    ? setTheme("light")
+                    : setTheme("dark")
+                }
+                className="bg-slate-100 p-2 rounded-xl"
+                aria-label="Set website theme to light"
+              >
+                <RiSunLine size={25} color="black" />
+              </button>
             </div>
           </div>
         </div>
       </div>
     </header>
-  )
+  );
 }

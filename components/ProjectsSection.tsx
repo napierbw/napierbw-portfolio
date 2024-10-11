@@ -11,7 +11,7 @@ const projects = [
       "Create art using ascii characters in the ascii.txt file and run asciiArtEscape.py to add escape characters and echo statements before each character/line. Very useful for creating art for text based games!",
     image: "/asciiArtEscape.png",
     github: "https://github.com/napierbw/asciiArtEscape",
-    link: "",
+    link: "https://github.com/napierbw/asciiArtEscape",
   },
 ]
 
@@ -30,7 +30,7 @@ const ProjectsSection = () => {
               <SlideUp offset="-300px 0px -300px 0px">
                 <div className="flex flex-col  animate-slideUpCubiBezier animation-delay-2 md:flex-row md:space-x-12">
                   <div className=" md:w-1/2">
-                    <Link href={project.link}>
+                    <Link href={project.link} aria-label={"Go to " + project.name}>
                       <Image
                         src={project.image}
                         alt=""
@@ -46,13 +46,13 @@ const ProjectsSection = () => {
                       {project.description}
                     </p>
                     <div className="flex flex-row align-bottom space-x-4">
-                      {project.github ? <Link href={project.github} target="_blank">
+                      {project.github  && project.github !== "" ? <Link href={project.github} target="_blank" aria-label={"Go to " + project.name + " GitHub"}>
                         <BsGithub
                           size={30}
                           className="hover:-translate-y-1 transition-transform cursor-pointer"
                         />
                       </Link> : <></>} 
-                      {project.link ? <Link href={project.link} target="_blank">
+                      {project.link && project.link !== "" ? <Link href={project.link} target="_blank" aria-label={"Go to " + project.name}>
                         <BsArrowUpRightSquare
                           size={30}
                           className="hover:-translate-y-1 transition-transform cursor-pointer"
