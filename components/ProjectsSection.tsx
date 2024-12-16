@@ -1,8 +1,8 @@
-import React from "react"
-import Image from "next/image"
-import Link from "next/link"
-import SlideUp from "./SlideUp"
-import { BsGithub, BsArrowUpRightSquare } from "react-icons/bs"
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import SlideUp from "./SlideUp";
+import { BsGithub, BsArrowUpRightSquare } from "react-icons/bs";
 
 const projects = [
   {
@@ -13,7 +13,15 @@ const projects = [
     github: "https://github.com/napierbw/asciiArtEscape",
     link: "https://github.com/napierbw/asciiArtEscape",
   },
-]
+  {
+    name: "FineLine Barbershop",
+    description:
+      "Sample website using NextJS static site generation with data from a headless content management system (Contentful).",
+    image: "/logo.webp",
+    github: "https://github.com/napierbw/fineline-barber",
+    link: "https://fineline-barber.vercel.app",
+  },
+];
 
 const ProjectsSection = () => {
   return (
@@ -30,7 +38,10 @@ const ProjectsSection = () => {
               <SlideUp offset="-300px 0px -300px 0px">
                 <div className="flex flex-col  animate-slideUpCubiBezier animation-delay-2 md:flex-row md:space-x-12">
                   <div className=" md:w-1/2">
-                    <Link href={project.link} aria-label={"Go to " + project.name}>
+                    <Link
+                      href={project.link}
+                      aria-label={"Go to " + project.name}
+                    >
                       <Image
                         src={project.image}
                         alt=""
@@ -46,29 +57,44 @@ const ProjectsSection = () => {
                       {project.description}
                     </p>
                     <div className="flex flex-row align-bottom space-x-4">
-                      {project.github  && project.github !== "" ? <Link href={project.github} target="_blank" aria-label={"Go to " + project.name + " GitHub"}>
-                        <BsGithub
-                          size={30}
-                          className="hover:-translate-y-1 transition-transform cursor-pointer"
-                        />
-                      </Link> : <></>} 
-                      {project.link && project.link !== "" ? <Link href={project.link} target="_blank" aria-label={"Go to " + project.name}>
-                        <BsArrowUpRightSquare
-                          size={30}
-                          className="hover:-translate-y-1 transition-transform cursor-pointer"
-                        />
-                      </Link> : <></>}
+                      {project.github && project.github !== "" ? (
+                        <Link
+                          href={project.github}
+                          target="_blank"
+                          aria-label={"Go to " + project.name + " GitHub"}
+                        >
+                          <BsGithub
+                            size={30}
+                            className="hover:-translate-y-1 transition-transform cursor-pointer"
+                          />
+                        </Link>
+                      ) : (
+                        <></>
+                      )}
+                      {project.link && project.link !== "" ? (
+                        <Link
+                          href={project.link}
+                          target="_blank"
+                          aria-label={"Go to " + project.name}
+                        >
+                          <BsArrowUpRightSquare
+                            size={30}
+                            className="hover:-translate-y-1 transition-transform cursor-pointer"
+                          />
+                        </Link>
+                      ) : (
+                        <></>
+                      )}
                     </div>
                   </div>
                 </div>
               </SlideUp>
             </div>
-          )
+          );
         })}
-        
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ProjectsSection
+export default ProjectsSection;
